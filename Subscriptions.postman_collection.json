@@ -1,0 +1,907 @@
+{
+	"info": {
+		"name": "Subscriptions Build Test",
+		"_postman_id": "1ce9fc70-cf31-2082-14ab-13e527d7fce2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01.PostAccount (optional fields)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var jdata = JSON.parse(responseBody);",
+							"",
+							"",
+							"postman.setGlobalVariable(\"account_id\", jdata.AccountId);",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"accountId\": \"f5dfa14f-7224-4d45-b38f-21a5c9e2ba19\",\r\n  \"name\": \"AutoTest\",\r\n  \"firstname\": \"Robert\",\r\n  \"lastname\": \"Reeves\",\r\n  \"email\": \"auto.quest.test@gmail.com\",\r\n  \"country\": \"Australia\",\r\n  \"currency\": \"AUD\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "01.PostAccount (required only)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var jdata = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"AutoTest\",\r\n  \"firstname\": \"Robert\",\r\n  \"lastname\": \"Reeves\",\r\n  \"email\": \"auto.quest.test@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "01.PostAccount (400) Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code expected 400\"] = responseCode.code === 400;",
+							"",
+							"",
+							"tests[\"Field Missing\"] = ",
+							"      responseBody.has(\"New account is missing the following fields: Name\");",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name1\": \"AutoTest\",\r\n  \"firstname\": \"Robert\",\r\n  \"lastname\": \"Reeves\",\r\n  \"email\": \"auto.quest.test@gmail.com\",\r\n  \"country\": \"Australia\",\r\n  \"currency\": \"AUD\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "01.PostAccount (400) FirstName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code expected 400\"] = responseCode.code === 400;",
+							"",
+							"",
+							"tests[\"Field Missing\"] = ",
+							"      responseBody.has(\"New account is missing the following fields: FirstName\");",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"AutoTest\",\r\n  \"firstname1\": \"Robert\",\r\n  \"lastname\": \"Reeves\",\r\n  \"email\": \"auto.quest.test@gmail.com\",\r\n  \"country\": \"Australia\",\r\n  \"currency\": \"AUD\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "01.PostAccount (400) Lastname",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code expected 400\"] = responseCode.code === 400;",
+							"",
+							"",
+							"tests[\"Field Missing\"] = ",
+							"      responseBody.has(\"New account is missing the following fields: Lastname\");",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"AutoTest\",\r\n  \"firstname\": \"Robert\",\r\n  \"lastname1\": \"Reeves\",\r\n  \"email\": \"auto.quest.test@gmail.com\",\r\n  \"country\": \"Australia\",\r\n  \"currency\": \"AUD\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "01.PostAccount (400) name,email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code expected 400\"] = responseCode.code === 400;",
+							"",
+							"",
+							"tests[\"Field Missing\"] = ",
+							"      responseBody.has(\"New account is missing the following fields: Name, Email\");",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name1\": \"AutoTest\",\r\n  \"firstname\": \"Robert\",\r\n  \"lastname\": \"Reeves\",\r\n  \"email1\": \"auto.quest.test@gmail.com\",\r\n  \"country\": \"Australia\",\r\n  \"currency\": \"AUD\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "01.GetAccount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jdata = JSON.parse(responseBody);",
+							"",
+							"var fields=[\"ID\", \"Name\",\"FirstName\",\"LastName\",",
+							"\"Address1\", \"Address2\", \"LastName\", \"City\", \"State\", \"Zipcode\",",
+							"\"Country\", \"WorkPhone\", \"WorkEmail\"];",
+							"",
+							"var sdata = JSON.stringify(jdata);",
+							"for (var key in fields)",
+							"{",
+							"    tests[\"Field \" + fields[key] + \" is Present\"] = sdata.search(fields[key]) != -1",
+							"}",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "02-1.PatchAccount (400) - invalid body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is ok\"] = responseCode.code === 400",
+							"|| responseCode.code === 400;",
+							"",
+							"tests[\"Expected Fields Message \"] = responseBody.has( \"Can't modify an address without specifying Address1, city, country, state and postalcode\") ;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"addressxyz\": \"Altered Street\",\n  \"city\": \"Kew\",\n  \"country\": \"Australia\",\n  \"state\": \"Victoria\",\n  \"postalcode\": \"3006\"\n}\n\n"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "02-2.GetAccount(Verify previous PATCH)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "03.GetProductsRatesPlans (Family)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"/*",
+							"tests[\"JSON Content\"] = responseBody.has(\"products\")",
+							"    && responseBody.has(\"id\") ",
+							"    && responseBody.has(\"name\")",
+							"    && responseBody.has(\"sku\")",
+							"    && responseBody.has(\"plans\");",
+							"    ",
+							"",
+							"var jdata = JSON.parse(responseBody);",
+							"",
+							"tests[\"TestProductFamily\"]= jdata.products[0].family === \"Spotlight Tuning\";",
+							"tests[\"Product Name\"]= jdata.products[0].name === \"Spotlight Tuning Pack For SQL Server\";",
+							"tests[\"Product SKU\"]= jdata.products[0].sku === \"AxA-SPO-SUB\";",
+							"*/"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/products?family=Spotlight",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "family",
+							"value": "Spotlight",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Post account subscriptions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var jdata = JSON.parse(responseBody);",
+							"",
+							"postman.setGlobalVariable(\"subscription_id1\", jdata.subscriptionId);",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "      \n{ \n  \"PlanID\": \"sc_sql_basic\",\n  \"PaymentMethodId\": \"Manual\",\n  \"Quantity\": \"2\",\n  \"Currency\": \"USD\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}/subscriptions/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}",
+						"subscriptions",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Post account subscriptions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"",
+							"var jdata = JSON.parse(responseBody);",
+							"",
+							"postman.setGlobalVariable(\"subscription_id2\", jdata.subscriptionId);",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "      \n{ \n\"PlanID\": \"sc_sql_pro\",\n  \"PaymentMethodId\": \"Manual\",\n  \"Quantity\": \"02\",\n  \"Currency\": \"USD\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}/subscriptions/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}",
+						"subscriptions",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Post account subscriptions (404) Invalid account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;",
+							"",
+							"tests[\"Invalid/Unknown Account id\"] = ",
+							"    responseBody.has( \"Account not found\");",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "      \n{ \n\"PlanID\": \"sc_sql_pro\",\n  \"PaymentMethodId\": \"Manual\",\n  \"Quantity\": \"02\",\n  \"Currency\": \"USD\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}1/subscriptions/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}1",
+						"subscriptions",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Post account subscriptions (400) Invalid Body",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 400\"] = responseCode.code === 400;",
+							"",
+							"tests[\"Invalid/Unknown Plan id\"] = ",
+							"    responseBody.has( \"PlanID is not valid\");",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "      \n{ \n\"PlanID1\": \"sc_sql_pro\",\n  \"PaymentMethodId\": \"Manual\",\n  \"Quantity\": \"02\",\n  \"Currency\": \"USD\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}1/subscriptions/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}1",
+						"subscriptions",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Get account subscriptions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Verify New Subscription 1\"] =",
+							"     responseBody.has(globals.subscription_id1);",
+							"",
+							"tests[\"Verify New Subscription 2\"] =",
+							"     responseBody.has(globals.subscription_id2);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}/subscriptions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}",
+						"subscriptions"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Patch account subscriptions(Quantity+)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Quantity\": \"10\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}/subscriptions/{{subscription_id1}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}",
+						"subscriptions",
+						"{{subscription_id1}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Patch account subscriptions(Change Plan)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"PlanID\": \"sc_sql_prem\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}/subscriptions/41025dbb218e5bb75722484a71abd570",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}",
+						"subscriptions",
+						"41025dbb218e5bb75722484a71abd570"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05.Post account subscriptions/cancel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Cancelled Message\"] = responseBody.has(\"Subscription cancelled\");",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"StartDate\": \"2017-11-09\",\n\"ExpiryDate\": \"2017-11-30\",\n\"AutoRenew\": \"yes\",\n\"PlanID\": \"sc_sql_basic\",\n\"InTrial\": \"no\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/{{account_id}}/subscriptions/{{subscription_id1}}/cancel",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"{{account_id}}",
+						"subscriptions",
+						"{{subscription_id1}}",
+						"cancel"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "07.GetInvoices",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"tests[\"JSON Content\"] = responseBody.has(\"AccountID\")",
+							"    && responseBody.has(\"InvoiceID\") ;",
+							"    ",
+							"    "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/accounts/57ae53d8-91a2-43bc-968a-494c2fc7579b/invoices",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"57ae53d8-91a2-43bc-968a-494c2fc7579b",
+						"invoices"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
